@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "@vaadin/router": "./@vaadin/router.js",
+    "kv-storage-polyfill": "./kv-storage-polyfill.js",
+    "lit-element": "./lit-element.js"
+  }
+}
