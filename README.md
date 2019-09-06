@@ -1,1 +1,21 @@
-# checklist-app
+# Checklists
+
+An app to help you manage standard operating procedures for your everyday life. Built without Webpack etc. Uses [LitElement](https://lit-element.polymer-project.org), [kv-storage](https://css-tricks.com/kv-storage/), [@vaadin/router](https://vaadin.com/router) and [cutestrap](https://cutestrap.com) ([inspired by this article](https://css-tricks.com/going-buildless/)).
+
+## Setting up
+
+After cloning the repo, you should run
+
+```
+npm install
+```
+
+After installing you should see a postinstall hook run `@pika/web`.
+
+## Running the app
+
+To start the server, simply run
+
+```
+npm start
+```
