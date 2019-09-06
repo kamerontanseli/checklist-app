@@ -78,7 +78,7 @@ class ChecklistPwaHistoryDetail extends LitElement {
 										progress="${this.progress}"
 									></checklist-progress-bar>
 								</div>
-								<div class="column ta-right">${this.progress}%</div>
+								<div class="column ta-right">${this.progress.toFixed(0)}%</div>
 							</div>
 							${procedure.map(
 								(item, index) =>
