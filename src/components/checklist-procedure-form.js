@@ -75,7 +75,7 @@ class ChecklistProcedureForm extends LitElement {
 		return html`
 			<link
 				rel="stylesheet"
-				href="/node_modules/cutestrap/dist/css/cutestrap.min.css"
+				href="/web_modules/cutestrap/dist/css/cutestrap.min.css"
 			/>
 			<fieldset>
 				<legend><h3>Procedure</h3></legend>

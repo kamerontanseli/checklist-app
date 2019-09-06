@@ -1,4 +1,4 @@
-var CACHENAME = "js13kPWA-v1";
+var CACHENAME = "js13kPWA-v1.0.1";
 
 self.addEventListener("install", event => {
   console.log("[Service Worker] Install");
@@ -11,8 +11,8 @@ self.addEventListener("install", event => {
         "/web_modules/lit-element.js",
         "/web_modules/@vaadin/router.js",
         "/web_modules/kv-storage-polyfill.js",
-        "/node_modules/es-module-shims/dist/es-module-shims.js",
-        "/node_modules/cutestrap/dist/css/cutestrap.min.css",
+        "/web_modules/es-module-shims.js",
+        "/web_modules/cutestrap/dist/css/cutestrap.min.css",
         "/src/api/storage.js",
         "/src/components/checklist-procedure-form.js",
         "/src/components/checklist-progress-bar.js",
@@ -54,7 +54,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames
-          .filter(cacheName => cacheName.startsWith('reddit-pwa-') && cacheName !== CACHENAME)
+          .filter(cacheName => cacheName.startsWith('js13kPWA-') && cacheName !== CACHENAME)
           .map(cacheName => caches.delete(cacheName))
       )
     })

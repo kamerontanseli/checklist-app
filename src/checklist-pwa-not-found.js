@@ -4,7 +4,7 @@ import Storage from "./api/storage.js";
 class ChecklistPwaNotFound extends LitElement {
 	render() {
 		return html`
-			<link rel="stylesheet" href="/node_modules/cutestrap/dist/css/cutestrap.min.css" />
+			<link rel="stylesheet" href="/web_modules/cutestrap/dist/css/cutestrap.min.css" />
 			<h1>Page Not Found</h1>
 
 			<p>

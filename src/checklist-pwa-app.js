@@ -60,7 +60,7 @@ class ChecklistPwaApp extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/node_modules/cutestrap/dist/css/cutestrap.min.css" />
+      <link rel="stylesheet" href="/web_modules/cutestrap/dist/css/cutestrap.min.css" />
       <div class="wrapper-small">
         <p>
           <a href="/create">Add a checklist</a> | <a href="/">Checklists</a> | <a href="/history">Reviews</a>

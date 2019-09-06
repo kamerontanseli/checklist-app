@@ -65,7 +65,7 @@ class ChecklistPwaDetail extends LitElement {
 		return html`
 			<link
 				rel="stylesheet"
-				href="../node_modules/cutestrap/dist/css/cutestrap.min.css"
+				href="/web_modules/cutestrap/dist/css/cutestrap.min.css"
 			/>
 			${this.loading || !this.checklist
 				? html`

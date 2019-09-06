@@ -26,7 +26,7 @@ class ChecklistPwaHistory extends LitElement {
 		return html`
 			<link
 				rel="stylesheet"
-				href="/node_modules/cutestrap/dist/css/cutestrap.min.css"
+				href="/web_modules/cutestrap/dist/css/cutestrap.min.css"
 			/>
 
 			<h1>Your Reviews</h1>

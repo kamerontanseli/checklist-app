@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/web_modules
 
 # Runtime data
 pids
