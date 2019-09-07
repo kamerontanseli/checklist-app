@@ -1,4 +1,4 @@
-var CACHENAME = "js13kPWA-v1.0.3";
+var CACHENAME = "js13kPWA-v1.0.4";
 
 self.addEventListener("install", event => {
   console.log("[Service Worker] Install");
