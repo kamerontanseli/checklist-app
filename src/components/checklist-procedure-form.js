@@ -1,4 +1,5 @@
 import { LitElement, html, css } from "lit-element";
+import "./checklist-procedure.js";
 
 class ChecklistProcedureForm extends LitElement {
 	static get properties() {
@@ -6,16 +7,6 @@ class ChecklistProcedureForm extends LitElement {
 			procedure: { type: Array },
 			procedureText: { type: String }
 		};
-	}
-
-	static get styles() {
-		return css`
-			.btn--small {
-				height: 2.4rem;
-				padding: 0 1.5rem;
-				line-height: 0;
-			}
-		`;
 	}
 
 	constructor() {
@@ -55,20 +46,18 @@ class ChecklistProcedureForm extends LitElement {
 	}
 
 	changeDirection(index, direction) {
-		return e => {
-			const isValidForUp = direction === "up" && index > 0;
-			const isValidForDown =
-				direction === "down" && index < this.procedure.length - 1;
+		const isValidForUp = direction === "up" && index > 0;
+		const isValidForDown =
+			direction === "down" && index < this.procedure.length - 1;
 
-			if (isValidForUp || isValidForDown) {
-				const clone = this.procedure.slice();
-				const newIndex = index + (direction === "up" ? -1 : 1);
-				let temp = clone[index];
-				clone[index] = clone[newIndex];
-				clone[newIndex] = temp;
-				this.procedure = clone;
-			}
-		};
+		if (isValidForUp || isValidForDown) {
+			const clone = this.procedure.slice();
+			const newIndex = index + (direction === "up" ? -1 : 1);
+			let temp = clone[index];
+			clone[index] = clone[newIndex];
+			clone[newIndex] = temp;
+			this.procedure = clone;
+		}
 	}
 
 	render() {
@@ -96,7 +85,6 @@ class ChecklistProcedureForm extends LitElement {
 							@click="${this.createProcedure}"
 							type="button"
 							class="btn--secondary"
-							.disabled="${this.procedureText.length < 1}"
 						>
 							+
 						</button>
@@ -105,45 +93,15 @@ class ChecklistProcedureForm extends LitElement {
 				${this.procedure.map(
 					(item, index, arr) =>
 						html`
-							<div
-								class="grid"
-								style="align-items: center; margin-bottom: 10px;"
+							<checklist-procedure
+								@procedure-remove="${this.removeProcedure(index)}"
+								@procedure-shift="${({ detail }) =>
+									this.changeDirection(index, detail.direction)}"
+								down-disabled="${index === arr.length - 1}"
+								up-disabled="${index === 0}"
+								procedure="${item}"
 							>
-								<div class="column--heavy">
-									<p style="padding: 0;">${item}</p>
-								</div>
-								<div class="grid">
-									<div class="column">
-										<button
-											type="button"
-											@click="${this.removeProcedure(index)}"
-											class="btn--secondary btn--small"
-										>
-											x
-										</button>
-									</div>
-									<div class="column">
-										<button
-											type="button"
-											@click="${this.changeDirection(index, "up")}"
-											.disabled="${index === 0}"
-											class="btn--secondary btn--small"
-										>
-											&uarr;
-										</button>
-									</div>
-									<div class="column">
-										<button
-											type="button"
-											@click="${this.changeDirection(index, "down")}"
-											.disabled="${index === arr.length - 1}"
-											class="btn--secondary btn--small"
-										>
-											&darr;
-										</button>
-									</div>
-								</div>
-							</div>
+							</checklist-procedure>
 						`
 				)}
 			</fieldset>

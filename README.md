@@ -19,3 +19,11 @@ To start the server, simply run
 ```
 npm start
 ```
+
+## Improvements
+
+[ ] Isolate CSS logic to specific components (i.e: don't load the entire 7kb CSS framework in every page)
+
+[ ] Preload app with defaults such as the [Front End Checklist](https://github.com/thedaviddias/Front-End-Checklist) and the [React Checklist](https://blog.jakoblind.no/checklist-for-reviewing-your-own-react-code/)
+
+[ ] Improve icon and branding

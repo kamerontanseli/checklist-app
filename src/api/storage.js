@@ -1,51 +1,86 @@
 import { StorageArea } from "kv-storage";
 
+class JSONArrayStorage {
+	constructor(name) {
+		this.storage = new StorageArea(name);
+	}
+
+	set(name, value) {
+		return this.storage.set(name, JSON.stringify(value));
+	}
+
+	async get(name) {
+		const result = await this.storage.get(name);
+		return result ? JSON.parse(result) : [];
+	}
+}
+
+class JSONObjectManagementStorage {
+	constructor(storage, dbName) {
+		this.storage = storage;
+		this.dbName = dbName;
+	}
+
+	get() {
+		return this.storage.get(this.dbName);
+	}
+
+	async remove(index) {
+		const items = await this.get();
+		items.splice(index, 1);
+		await this.storage.set(this.dbName, items);
+	}
+
+	async add(item) {
+		const items = await this.get();
+		const index = items.push(item) - 1;
+		await this.storage.set(this.dbName, items);
+		return index;
+	}
+
+	async edit(index, changes) {
+		const items = await this.get();
+		items[index] = { ...items[index], ...changes };
+		await this.storage.set(this.dbName, items);
+		return items[index];
+	}
+}
+
 class ChecklistStorage {
-	constructor () {
-		this.storage = new StorageArea('checklist-pwa-storage');
+	constructor() {
+		const storage = new JSONArrayStorage("checklist-pwa-storage");
+		this.api = {
+			checklists: new JSONObjectManagementStorage(storage, "checklists"),
+			reviews: new JSONObjectManagementStorage(storage, "reviews")
+		};
 	}
 
-	async deleteReview(index) {
-		const reviews = await this.getReviews();
-		reviews.splice(index, 1);
-		await this.storage.set('reviews', JSON.stringify(reviews));
+	deleteReview(index) {
+		return this.api.reviews.remove(index);
 	}
 
-	async addReviewal(review) {
-		const reviews = await this.getReviews();
-		const index = reviews.push(review) - 1;
-		await this.storage.set('reviews', JSON.stringify(reviews));
-		return index;
+	addReviewal(review) {
+		return this.api.reviews.add(review)
 	}
 
-	async addChecklist(checklist) {
-		const checklists = await this.getChecklists();
-		const index = checklists.push(checklist) - 1;
-		await this.storage.set('checklists', JSON.stringify(checklists));
-		return index;
+	addChecklist(checklist) {
+		return this.api.checklists.add(checklist);
 	}
 
-	async editChecklist(index, changes) {
-		const checklists = await this.getChecklists();
-		checklists[index] = { ...checklists[index], ...changes }
-		await this.storage.set('checklists', JSON.stringify(checklists));
-		return checklists[index];
+	editChecklist(index, changes) {
+		return this.api.checklists.edit(index, changes);
 	}
 
-	async deleteChecklist(index) {
-		const checklists = await this.getChecklists();
-		checklists.splice(index, 1);
-		await this.storage.set('checklists', JSON.stringify(checklists));
+	deleteChecklist(index) {
+		return this.api.checklists.remove(index)
 	}
 
-	async getChecklists () {
-		const result = await this.storage.get('checklists');
-		return result ? JSON.parse(result) : [];
+	getChecklists() {
+		return this.api.checklists.get();
 	}
 
-	async getReviews () {
-		const result = await this.storage.get('reviews');
-		return result ? JSON.parse(result) : [];
+	getReviews() {
+		return this.api.reviews.get();
 	}
 }
 

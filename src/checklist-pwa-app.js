@@ -1,5 +1,6 @@
 import { LitElement, html, css } from "lit-element";
 import { Router } from "@vaadin/router";
+import './components/checklist-navigation.js';
 
 class ChecklistPwaApp extends LitElement {
   firstUpdated() {
@@ -49,22 +50,23 @@ class ChecklistPwaApp extends LitElement {
         }
       },
       {
-        path: '(.*)', 
+        path: "(.*)",
         component: "checklist-pwa-not-found",
         action: () => {
           import("./checklist-pwa-not-found.js");
         }
-      },
+      }
     ]);
   }
 
   render() {
     return html`
-      <link rel="stylesheet" href="/web_modules/cutestrap/dist/css/cutestrap.min.css" />
+      <link
+        rel="stylesheet"
+        href="/web_modules/cutestrap/dist/css/cutestrap.min.css"
+      />
       <div class="wrapper-small">
-        <p>
-          <a href="/create">Add a checklist</a> | <a href="/">Checklists</a> | <a href="/history">Reviews</a>
-        </p>
+        <checklist-navigation></checklist-navigation>
         <div id="outlet"></div>
       </div>
     `;
