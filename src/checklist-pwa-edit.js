@@ -44,7 +44,6 @@ class ChecklistPwaEdit extends LitElement {
 	}
 
 	updateProcedures(e) {
-		console.log(e.detail.procedure)
 		this.procedure = e.detail.procedure;
 	}
 

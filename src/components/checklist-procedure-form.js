@@ -69,18 +69,17 @@ class ChecklistProcedureForm extends LitElement {
 			<fieldset>
 				<legend><h3>Procedure</h3></legend>
 				<div class="grid">
-					<div class="column--heavy">
+					<div class="column--heavy" style="flex-grow: 25;">
 						<label class="textfield">
-							<input
+							<textarea
 								.value="${this.procedureText}"
 								id="procedureText"
 								@change="${this.changeProperty("procedureText")}"
-								type="text"
-							/>
-							<span class="textfield__label">Title</span>
+							></textarea>
+							<span class="textfield__label">Action</span>
 						</label>
 					</div>
-					<div>
+					<div class="ta-right">
 						<button
 							@click="${this.createProcedure}"
 							type="button"

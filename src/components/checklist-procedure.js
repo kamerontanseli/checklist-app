@@ -69,7 +69,7 @@ class ChecklistProcedure extends LitElement {
 				<div class="column--heavy">
 					<p style="padding: 0;">${this.procedure}</p>
 				</div>
-				<div class="grid">
+				<div class="grid ta-right">
 					<div class="column">
 						<button
 							type="button"
