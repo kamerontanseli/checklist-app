@@ -1,47 +1,47 @@
-import { LitElement, html, css } from "lit-element";
-import { Router } from "@vaadin/router";
-import "./components/checklist-navigation.js";
+import { LitElement, html, css } from 'lit-element';
+import { Router } from '@vaadin/router';
+import './components/checklist-navigation.js';
 
 class ChecklistPwaApp extends LitElement {
   firstUpdated() {
-    const router = new Router(this.shadowRoot.getElementById("outlet"));
+    const router = new Router(this.shadowRoot.getElementById('outlet'));
 
     router.setRoutes([
       {
-        path: "/",
-        component: "checklist-pwa-list",
-        action: () => import("./checklist-pwa-list.js")
+        path: '/',
+        component: 'checklist-pwa-list',
+        action: () => import('./checklist-pwa-list.js'),
       },
       {
-        path: "/create",
-        component: "checklist-pwa-create",
-        action: () => import("./checklist-pwa-create.js")
+        path: '/create',
+        component: 'checklist-pwa-create',
+        action: () => import('./checklist-pwa-create.js'),
       },
       {
-        path: "/checklists/:id",
-        component: "checklist-pwa-detail",
-        action: () => import("./checklist-pwa-detail.js")
+        path: '/checklists/:id',
+        component: 'checklist-pwa-detail',
+        action: () => import('./checklist-pwa-detail.js'),
       },
       {
-        path: "/checklists/edit/:id",
-        component: "checklist-pwa-edit",
-        action: () => import("./checklist-pwa-edit.js")
+        path: '/checklists/edit/:id',
+        component: 'checklist-pwa-edit',
+        action: () => import('./checklist-pwa-edit.js'),
       },
       {
-        path: "/history",
-        component: "checklist-pwa-history",
-        action: () => import("./checklist-pwa-history.js")
+        path: '/history',
+        component: 'checklist-pwa-history',
+        action: () => import('./checklist-pwa-history.js'),
       },
       {
-        path: "/history/:id",
-        component: "checklist-pwa-history-detail",
-        action: () => import("./checklist-pwa-history-detail.js")
+        path: '/history/:id',
+        component: 'checklist-pwa-history-detail',
+        action: () => import('./checklist-pwa-history-detail.js'),
       },
       {
-        path: "(.*)",
-        component: "checklist-pwa-not-found",
-        action: () => import("./checklist-pwa-not-found.js")
-      }
+        path: '(.*)',
+        component: 'checklist-pwa-not-found',
+        action: () => import('./checklist-pwa-not-found.js'),
+      },
     ]);
   }
 
@@ -59,4 +59,4 @@ class ChecklistPwaApp extends LitElement {
   }
 }
 
-customElements.define("checklist-pwa-app", ChecklistPwaApp);
+customElements.define('checklist-pwa-app', ChecklistPwaApp);

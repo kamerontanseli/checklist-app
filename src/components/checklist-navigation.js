@@ -1,13 +1,13 @@
-import { LitElement, html, css } from "lit-element";
+import { LitElement, html, css } from 'lit-element';
 
 class ChecklistNavigation extends LitElement {
-	static get properties() {
-		return {
-			pathname: { type: String }
-		};
-	}
+  static get properties() {
+    return {
+      pathname: { type: String },
+    };
+  }
 
-	static get styles() {
+  static get styles() {
     return css`
       .navbar {
         background-color: #eee;
@@ -37,59 +37,58 @@ class ChecklistNavigation extends LitElement {
     `;
   }
 
+  constructor() {
+    super();
+    this.pathname = location.pathname;
+    this.popstateListener = () => {
+      this.pathname = location.pathname;
+    };
+  }
 
-	constructor() {
-		super();
-		this.pathname = location.pathname;
-		this.popstateListener = () => {
-			this.pathname = location.pathname;
-		};
-	}
+  connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener('popstate', this.popstateListener);
+  }
 
-	connectedCallback() {
-		super.connectedCallback();
-		window.addEventListener("popstate", this.popstateListener);
-	}
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener('popstate', this.popstateListener);
+  }
 
-	disconnectedCallback() {
-		super.disconnectedCallback();
-		window.removeEventListener("popstate", this.popstateListener);
-	}
+  render() {
+    let selected = null;
 
-	render() {
-		let selected = null;
+    if (this.pathname === '/' || this.pathname.indexOf('checklists') > -1) {
+      selected = 'checklists';
+    } else if (this.pathname.indexOf('history') > -1) {
+      selected = 'history';
+    } else if (this.pathname === '/create') {
+      selected = 'create';
+    }
 
-		if (this.pathname === "/" || this.pathname.indexOf("checklists") > -1) {
-			selected = "checklists";
-		} else if (this.pathname.indexOf("history") > -1) {
-			selected = "history";
-		} else if (this.pathname === "/create") {
-			selected = "create";
-		}
-
-		return html`
-			<link
-				rel="stylesheet"
-				href="/web_modules/cutestrap/dist/css/cutestrap.min.css"
-			/>
-			<p class="navbar">
-				<a class="${selected === "checklists" ? "navbar--active" : ""}" href="/"
-					>Checklists</a
-				>
-				<a
-					class="${selected === "history" ? "navbar--active" : ""}"
-					style="margin-right: auto;"
-					href="/history"
-					>Reviews</a
-				>
-				<a
-					class="${selected === "create" ? "navbar--active" : ""}"
-					href="/create"
-					>+ Add New Checklist</a
-				>
-			</p>
-		`;
-	}
+    return html`
+      <link
+        rel="stylesheet"
+        href="/web_modules/cutestrap/dist/css/cutestrap.min.css"
+      />
+      <p class="navbar">
+        <a class="${selected === 'checklists' ? 'navbar--active' : ''}" href="/"
+          >Checklists</a
+        >
+        <a
+          class="${selected === 'history' ? 'navbar--active' : ''}"
+          style="margin-right: auto;"
+          href="/history"
+          >Reviews</a
+        >
+        <a
+          class="${selected === 'create' ? 'navbar--active' : ''}"
+          href="/create"
+          >+ Add New Checklist</a
+        >
+      </p>
+    `;
+  }
 }
 
-customElements.define("checklist-navigation", ChecklistNavigation);
+customElements.define('checklist-navigation', ChecklistNavigation);

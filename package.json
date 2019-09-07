@@ -6,7 +6,9 @@
   "scripts": {
     "start": "ws --spa index.html",
     "postinstall": "pika-web",
-    "build": "npm run postinstall"
+    "build": "npm run postinstall",
+    "clean": "prettier --write \"src/**/*.js\"",
+    "lint": "eslint src/**/*.js"
   },
   "keywords": [],
   "author": "",
@@ -19,9 +21,11 @@
     "lit-element": "^2.2.1"
   },
   "devDependencies": {
-    "npm": "^6.11.3",
     "@pika/web": "^0.5.3",
+    "eslint": "^6.3.0",
+    "eslint-plugin-lit": "^1.2.0",
     "local-web-server": "^3.0.7",
+    "npm": "^6.11.3",
     "prettier": "^1.18.2"
   },
   "@pika/web": {
