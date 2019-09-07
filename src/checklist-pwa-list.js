@@ -1,5 +1,6 @@
 import { LitElement, html, css } from "lit-element";
 import Storage from "./api/storage.js";
+import './components/checklist-list-link.js';
 
 class ChecklistPwaList extends LitElement {
 	static get properties() {
@@ -33,16 +34,14 @@ class ChecklistPwaList extends LitElement {
 
 			${this.checklists.length
 				? html`
-						<ul>
-							${this.checklists.map(
+						${this.checklists.map(
 								(checklist, index) =>
 									html`
-										<li>
+										<checklist-list-link>
 											<a href="/checklists/${index}">${checklist.title}</a>
-										</li>
+										</checklist-list-link>
 									`
 							)}
-						</ul>
 				  `
 				: this.loading
 				? html`

@@ -29,14 +29,14 @@
   <script src="/src/checklist-pwa-app.js" type="module-shim"></script>
 </body>
 <script>
-  if ('serviceWorker' in navigator) {
-    // window.addEventListener('load', () => {
-    //   navigator.serviceWorker.register('/sw.js').then(() => {
-    //     console.log('ServiceWorker registered!');
-    //   }, (err) => {
-    //     console.log('ServiceWorker registration failed: ', err);
-    //   });
-    // });
+  if ('serviceWorker' in navigator && location.href.indexOf("http://127.0.0.1:8000") === -1) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').then(() => {
+        console.log('ServiceWorker registered!');
+      }, (err) => {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
   }
 </script>
 </html>

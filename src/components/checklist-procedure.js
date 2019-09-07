@@ -83,7 +83,7 @@ class ChecklistProcedure extends LitElement {
 						<button
 							type="button"
 							@click="${this.onChangeDirection("up")}"
-							.disabled="${this["up-disabled"]}"
+							?disabled="${this["up-disabled"]}"
 							class="btn--secondary btn--small"
 						>
 							&uarr;
@@ -93,7 +93,7 @@ class ChecklistProcedure extends LitElement {
 						<button
 							type="button"
 							@click="${this.onChangeDirection("down")}"
-							.disabled="${this["down-disabled"]}"
+							?disabled="${this["down-disabled"]}"
 							class="btn--secondary btn--small"
 						>
 							&darr;

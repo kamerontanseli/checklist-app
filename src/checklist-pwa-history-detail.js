@@ -88,7 +88,7 @@ class ChecklistPwaHistoryDetail extends LitElement {
 												<input
 													disabled
 													type="checkbox"
-													.checked="${item.completed}"
+													?checked="${item.completed}"
 												/>
 												<span class="checkbox__label">${item.action}</span>
 											</label>

@@ -1,5 +1,6 @@
 import { LitElement, html, css } from "lit-element";
 import Storage from "./api/storage.js";
+import "./components/checklist-list-link.js";
 
 class ChecklistPwaHistory extends LitElement {
 	static get properties() {
@@ -33,19 +34,17 @@ class ChecklistPwaHistory extends LitElement {
 
 			${this.reviews.length
 				? html`
-						<ul>
-							${this.reviews.map(
-								(review, index) =>
-									html`
-										<li>
-											<a href="/history/${index}"
-												>${review.title} -
-												${new Date(review.date).toDateString()}</a
-											>
-										</li>
-									`
-							)}
-						</ul>
+						${this.reviews.map(
+							(review, index) =>
+								html`
+									<checklist-list-link>
+										<a href="/history/${index}"
+											>${review.title} -
+											${new Date(review.date).toDateString()}</a
+										>
+									</checklist-list-link>
+								`
+						)}
 				  `
 				: this.loading
 				? html`
